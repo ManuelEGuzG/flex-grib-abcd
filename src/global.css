@@ -1,0 +1,126 @@
+
+:root {
+  --color-a: #1a3c6e;
+  --color-b: #6e1a1a;
+  --color-c: #1a5c35;
+  --color-d: #5c4a1a;
+  --bg: #f4f4f2;
+  --surface: #ffffff;
+  --border: #d0cec8;
+  --text: #1c1c1a;
+  --muted: #6b6b66;
+  --radius: 10px;
+  --gap: 14px;
+}
+
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Courier New', monospace;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1.5rem 3rem;
+  gap: 2rem;
+}
+
+
+.header {
+  text-align: center;
+}
+
+.header h1 {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  letter-spacing: 0.1em;
+  color: var(--text);
+}
+
+.header p {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-top: 0.3rem;
+}
+
+
+
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-weight: bold;
+  letter-spacing: 0.04em;
+  border-radius: var(--radius);
+  border: 2px solid;
+  min-height: 100px;
+  transition: transform 0.2s ease;
+}
+
+.box:hover {
+  transform: scale(1.02);
+}
+
+.box-a { background: #dce9f8; border-color: var(--color-a); color: var(--color-a); }
+.box-b { background: #f8dcdc; border-color: var(--color-b); color: var(--color-b); }
+.box-c { background: #d8f0e4; border-color: var(--color-c); color: var(--color-c); }
+.box-d { background: #f5ecd6; border-color: var(--color-d); color: var(--color-d); }
+
+
+.layout {
+  width: 100%;
+  max-width: 960px;
+
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 160px 100px;
+  grid-template-areas:
+    "a b c"
+    "d d d";
+  gap: var(--gap);
+}
+
+.box-a { grid-area: a; }
+.box-b { grid-area: b; }
+.box-c { grid-area: c; }
+.box-d { grid-area: d; }
+
+
+@media (max-width: 1023px) and (min-width: 768px) {
+  .layout {
+    /* --- CSS GRID (diferente template) --- */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 130px 130px;
+    grid-template-areas:
+      "a a d"
+      "b c d";
+    gap: var(--gap);
+  }
+}
+
+@media (max-width: 767px) {
+  .layout {
+    
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    grid-template-columns: unset;
+    grid-template-rows: unset;
+    grid-template-areas: unset;
+  }
+
+
+  .box {
+    min-height: 80px;
+  }
+}
+
